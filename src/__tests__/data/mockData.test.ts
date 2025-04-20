@@ -6,7 +6,7 @@ import {
   reviews,
   timeSlots,
 } from "../../data/mockData";
-import {
+import type {
   Doctor,
   Appointment,
   Service,
@@ -21,7 +21,7 @@ describe("Mock Data Tests", () => {
       expect(Array.isArray(doctors)).toBe(true);
       expect(doctors.length).toBeGreaterThan(0);
 
-      doctors.forEach((doctor) => {
+      doctors.forEach((doctor: Doctor) => {
         expect(doctor.id).toBeDefined();
         expect(doctor.name).toBeDefined();
         expect(doctor.specialization).toBeDefined();
@@ -48,7 +48,7 @@ describe("Mock Data Tests", () => {
       expect(appointments).toBeDefined();
       expect(Array.isArray(appointments)).toBe(true);
 
-      appointments.forEach((appointment) => {
+      appointments.forEach((appointment: Appointment) => {
         expect(appointment.id).toBeDefined();
         expect(appointment.doctorId).toBeDefined();
         expect(appointment.patientName).toBeDefined();
@@ -71,7 +71,7 @@ describe("Mock Data Tests", () => {
       expect(Array.isArray(services)).toBe(true);
       expect(services.length).toBeGreaterThan(0);
 
-      services.forEach((service) => {
+      services.forEach((service: Service) => {
         expect(service.id).toBeDefined();
         expect(service.name).toBeDefined();
         expect(service.description).toBeDefined();
@@ -88,7 +88,7 @@ describe("Mock Data Tests", () => {
       expect(Array.isArray(reviews)).toBe(true);
       expect(reviews.length).toBeGreaterThan(0);
 
-      reviews.forEach((review) => {
+      reviews.forEach((review: Review) => {
         expect(review.id).toBeDefined();
         expect(review.doctorId).toBeDefined();
         expect(review.patientName).toBeDefined();
@@ -106,7 +106,7 @@ describe("Mock Data Tests", () => {
       expect(Array.isArray(timeSlots)).toBe(true);
       expect(timeSlots.length).toBeGreaterThan(0);
 
-      timeSlots.forEach((timeSlot) => {
+      timeSlots.forEach((timeSlot: TimeSlot) => {
         expect(timeSlot.id).toBeDefined();
         expect(timeSlot.time).toBeDefined();
         expect(typeof timeSlot.isAvailable).toBe("boolean");

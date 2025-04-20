@@ -16,6 +16,7 @@ export const doctors: Doctor[] = [
       "Fellowship - Mayo Clinic",
     ],
     locations: ["Alexandria", "Cairo"],
+    languages: ["English", "Spanish"],
     availability: {
       days: ["Monday", "Wednesday", "Friday"],
       hours: "9:00 AM - 5:00 PM",
@@ -44,6 +45,7 @@ export const doctors: Doctor[] = [
       "Fellowship - Cleveland Clinic",
     ],
     locations: ["Madinat Nasr", "Tagamou"],
+    languages: ["English", "Mandarin", "Cantonese"],
     availability: {
       days: ["Tuesday", "Thursday", "Saturday"],
       hours: "10:00 AM - 6:00 PM",
@@ -71,6 +73,7 @@ export const doctors: Doctor[] = [
       "Fellowship - Boston Children's Hospital",
     ],
     locations: ["Alexandria", "Mansoura", "Cairo"],
+    languages: ["English", "Spanish", "French"],
     availability: {
       days: [
         "Monday",

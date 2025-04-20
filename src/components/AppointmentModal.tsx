@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useStore } from "../store/useStore";
-import { Doctor, TimeSlot, Appointment } from "../data/types";
+import { Doctor, Appointment } from "../data/types";
 
 interface AppointmentModalProps {
   doctor: Doctor;
@@ -41,12 +41,12 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const [patientName] = useState("");
+  const [patientEmail] = useState("");
+  const [patientPhone] = useState("");
+  const [reason] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
-  const [patientName, setPatientName] = useState("");
-  const [patientEmail, setPatientEmail] = useState("");
-  const [patientPhone, setPatientPhone] = useState("");
-  const [reason, setReason] = useState("");
 
   // Refs for focus management
   const modalRef = useRef<HTMLDivElement>(null);
@@ -54,7 +54,6 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   const dateSelectRef = useRef<HTMLSelectElement>(null);
   const submitButtonRef = useRef<HTMLButtonElement>(null);
 
-  const timeSlots = useStore((state) => state.timeSlots);
   const addAppointment = useStore((state) => state.addAppointment);
 
   // Focus management

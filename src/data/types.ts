@@ -9,6 +9,7 @@ export interface Doctor {
   experience: number;
   education: string[];
   locations: string[];
+  languages: string[];
   availability: {
     days: string[];
     hours: string;

@@ -11,9 +11,8 @@ const Home = () => {
 
   const getFilteredDoctors = useStore((s) => s.getFilteredDoctors);
 
-  // 🔁 Force re-render when filter or searchQuery changes
-  const filter = useStore((s) => s.filter);
-  const searchQuery = useStore((s) => s.searchQuery);
+  useStore((s) => s.filter);
+  useStore((s) => s.searchQuery);
 
   const filteredDoctors = getFilteredDoctors();
 

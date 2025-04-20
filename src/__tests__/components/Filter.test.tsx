@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render } from "@testing-library/react";
 import { Filter } from "../../components/Filter";
-import { Filter as FilterType } from "../../data/types";
 
 // Mock the store
 vi.mock("../../store/useStore", () => ({

@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4">
