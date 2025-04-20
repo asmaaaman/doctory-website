@@ -11,6 +11,10 @@ const Home = () => {
 
   const getFilteredDoctors = useStore((s) => s.getFilteredDoctors);
 
+  // 🔁 Force re-render when filter or searchQuery changes
+  const filter = useStore((s) => s.filter);
+  const searchQuery = useStore((s) => s.searchQuery);
+
   const filteredDoctors = getFilteredDoctors();
 
   const [activeTab, setActiveTab] = useState("doctors");
@@ -18,7 +22,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection onSearch={() => setActiveTab("doctors")} />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">

@@ -38,10 +38,11 @@ export const Filter = () => {
       role="search"
       aria-label="Doctor filters"
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        {/* Filters Group */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full">
           {/* Specialization Dropdown */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full sm:w-auto">
             <label
               htmlFor="specialization-filter"
               className="text-sm font-medium text-gray-700 mb-1"
@@ -50,7 +51,7 @@ export const Filter = () => {
             </label>
             <select
               id="specialization-filter"
-              className="bg-white px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full sm:w-56 bg-white px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={specialization}
               onChange={(e) => setSpecialization(e.target.value)}
               aria-label="Filter by specialization"
@@ -64,7 +65,7 @@ export const Filter = () => {
           </div>
 
           {/* Availability Dropdown */}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full sm:w-auto">
             <label
               htmlFor="availability-filter"
               className="text-sm font-medium text-gray-700 mb-1"
@@ -73,7 +74,7 @@ export const Filter = () => {
             </label>
             <select
               id="availability-filter"
-              className="bg-white px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full sm:w-56 bg-white px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               value={availability}
               onChange={(e) => setAvailability(e.target.value)}
               aria-label="Filter by availability"
@@ -87,12 +88,13 @@ export const Filter = () => {
           </div>
         </div>
 
+        {/* Reset Button */}
         <button
           onClick={() => {
             setSpecialization("All Specializations");
             setAvailability("All Availability");
           }}
-          className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex items-center gap-2 bg-white px-4 w-44 justify-center py-2 rounded-lg shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           aria-label="Reset all filters"
         >
           <FaFilter aria-hidden="true" />

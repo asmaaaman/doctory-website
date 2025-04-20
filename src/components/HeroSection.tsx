@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useStore } from "../store/useStore";
 
-const HeroSection = () => {
+const HeroSection = ({ onSearch }: { onSearch: () => void }) => {
   const setSearchQuery = useStore((state) => state.setSearchQuery);
   const [searchText, setSearchText] = useState("");
 
@@ -10,6 +10,7 @@ const HeroSection = () => {
     const value = e.target.value;
     setSearchText(value);
     setSearchQuery(value);
+    onSearch();
   };
 
   return (
@@ -35,7 +36,10 @@ const HeroSection = () => {
             </div>
             <button
               className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-              onClick={() => setSearchQuery(searchText)}
+              onClick={() => {
+                setSearchQuery(searchText);
+                onSearch();
+              }}
             >
               Search
             </button>
