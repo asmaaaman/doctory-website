@@ -52,15 +52,6 @@ A modern, accessible medical appointment booking platform built with React, Type
 
 4. Open your browser and navigate to `http://localhost:5173`
 
-### Environment Setup
-
-The project uses environment variables for configuration. Create a `.env` file in the root directory with the following variables:
-
-```
-VITE_API_URL=http://localhost:3000
-VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
-```
-
 ### Development Workflow
 
 1. Create a new branch for your feature:
@@ -133,8 +124,7 @@ doctory-website/
 This project was developed with assistance from AI tools:
 
 - **Cursor IDE**: Used for code generation, refactoring, and accessibility improvements
-- **Claude AI**: Assisted with component design, accessibility implementation, and documentation
-- **GitHub Copilot**: Provided code suggestions and helped with TypeScript type definitions
+- **Chatgpt**: Provided code suggestions and helped with TypeScript type definitions
 
 The AI tools were particularly helpful for:
 

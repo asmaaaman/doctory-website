@@ -52,6 +52,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dateSelectRef = useRef<HTMLSelectElement>(null);
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
 
   const timeSlots = useStore((state) => state.timeSlots);
   const addAppointment = useStore((state) => state.addAppointment);
@@ -62,7 +63,10 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
       // Focus the close button when modal opens
       closeButtonRef.current?.focus();
 
-      // Trap focus within the modal
+      // Store the element that had focus before the modal opened
+      const previouslyFocusedElement = document.activeElement as HTMLElement;
+
+      // Handle focus trapping
       const handleTabKey = (e: KeyboardEvent) => {
         if (e.key === "Tab") {
           const focusableElements = modalRef.current?.querySelectorAll(
@@ -89,7 +93,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
           }
         }
 
-        // Close modal on Escape key
+        // Close on Escape key
         if (e.key === "Escape") {
           onClose();
         }
@@ -97,8 +101,10 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
       document.addEventListener("keydown", handleTabKey);
 
+      // Restore focus when modal closes
       return () => {
         document.removeEventListener("keydown", handleTabKey);
+        previouslyFocusedElement?.focus();
       };
     }
   }, [isOpen, onClose]);
@@ -154,7 +160,8 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
             <button
               ref={closeButtonRef}
               onClick={onClose}
-              className="text-gray-500 hover:text-gray-700"
+              className="text-gray-500 hover:text-gray-700 
+              focus:outline-none rounded-full p-1"
               aria-label="Close modal"
             >
               ✕
@@ -315,6 +322,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 Cancel
               </button>
               <button
+                ref={submitButtonRef}
                 type="submit"
                 className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >

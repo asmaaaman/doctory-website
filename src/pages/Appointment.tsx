@@ -60,71 +60,105 @@ const Appointment = () => {
 
             {/* Appointment Type */}
             <div className="mb-6">
-              <label className="block text-gray-700 mb-2">
-                Appointment Type
-              </label>
-              <div className="flex gap-4">
-                <button
-                  type="button"
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                    appointmentType === "in-person"
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-700"
-                  }`}
-                  onClick={() => setAppointmentType("in-person")}
-                >
-                  <FaUser />
-                  <span>In Person</span>
-                </button>
-                <button
-                  type="button"
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                    appointmentType === "video"
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-700"
-                  }`}
-                  onClick={() => setAppointmentType("video")}
-                >
-                  <FaVideo />
-                  <span>Video Call</span>
-                </button>
-                <button
-                  type="button"
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                    appointmentType === "phone"
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-100 text-gray-700"
-                  }`}
-                  onClick={() => setAppointmentType("phone")}
-                >
-                  <FaPhone />
-                  <span>Phone Call</span>
-                </button>
-              </div>
+              <fieldset>
+                <legend className="block text-gray-700 mb-2 font-medium">
+                  Appointment Type
+                </legend>
+                <div className="flex gap-4">
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="in-person"
+                      name="appointment-type"
+                      value="in-person"
+                      checked={appointmentType === "in-person"}
+                      onChange={() => setAppointmentType("in-person")}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                    />
+                    <label
+                      htmlFor="in-person"
+                      className="ml-2 flex items-center gap-2"
+                    >
+                      <FaUser aria-hidden="true" />
+                      <span>In Person</span>
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="video"
+                      name="appointment-type"
+                      value="video"
+                      checked={appointmentType === "video"}
+                      onChange={() => setAppointmentType("video")}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                    />
+                    <label
+                      htmlFor="video"
+                      className="ml-2 flex items-center gap-2"
+                    >
+                      <FaVideo aria-hidden="true" />
+                      <span>Video Call</span>
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="phone"
+                      name="appointment-type"
+                      value="phone"
+                      checked={appointmentType === "phone"}
+                      onChange={() => setAppointmentType("phone")}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                    />
+                    <label
+                      htmlFor="phone"
+                      className="ml-2 flex items-center gap-2"
+                    >
+                      <FaPhone aria-hidden="true" />
+                      <span>Phone Call</span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
             </div>
 
             {/* Date and Time */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label className="block text-gray-700 mb-2">Select Date</label>
+                <label htmlFor="date" className="block text-gray-700 mb-2">
+                  Select Date
+                </label>
                 <div className="relative">
-                  <FaCalendar className="absolute left-3 top-3 text-gray-400" />
+                  <FaCalendar
+                    className="absolute left-3 top-3 text-gray-400"
+                    aria-hidden="true"
+                  />
                   <input
+                    id="date"
                     type="date"
-                    className="w-full pl-10 pr-4 py-2 border rounded-lg"
+                    className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
+                    aria-label="Select appointment date"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 mb-2">Select Time</label>
+                <label htmlFor="time" className="block text-gray-700 mb-2">
+                  Select Time
+                </label>
                 <div className="relative">
-                  <FaClock className="absolute left-3 top-3 text-gray-400" />
+                  <FaClock
+                    className="absolute left-3 top-3 text-gray-400"
+                    aria-hidden="true"
+                  />
                   <select
-                    className="w-full pl-10 pr-4 py-2 border rounded-lg"
+                    id="time"
+                    className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={selectedTime}
                     onChange={(e) => setSelectedTime(e.target.value)}
+                    aria-label="Select appointment time"
                   >
                     <option value="">Select a time</option>
                     {timeSlots.map((slot) => (
@@ -140,56 +174,80 @@ const Appointment = () => {
             {/* Patient Information */}
             <div className="space-y-4 mb-6">
               <div>
-                <label className="block text-gray-700 mb-2">Full Name</label>
+                <label
+                  htmlFor="patient-name"
+                  className="block text-gray-700 mb-2"
+                >
+                  Full Name
+                </label>
                 <input
+                  id="patient-name"
                   type="text"
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={formData.patientName}
                   onChange={(e) =>
                     setFormData({ ...formData, patientName: e.target.value })
                   }
+                  aria-required="true"
                 />
               </div>
               <div>
-                <label className="block text-gray-700 mb-2">Email</label>
+                <label
+                  htmlFor="patient-email"
+                  className="block text-gray-700 mb-2"
+                >
+                  Email
+                </label>
                 <input
+                  id="patient-email"
                   type="email"
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={formData.patientEmail}
                   onChange={(e) =>
                     setFormData({ ...formData, patientEmail: e.target.value })
                   }
+                  aria-required="true"
                 />
               </div>
               <div>
-                <label className="block text-gray-700 mb-2">Phone Number</label>
+                <label
+                  htmlFor="patient-phone"
+                  className="block text-gray-700 mb-2"
+                >
+                  Phone Number
+                </label>
                 <input
+                  id="patient-phone"
                   type="tel"
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   value={formData.patientPhone}
                   onChange={(e) =>
                     setFormData({ ...formData, patientPhone: e.target.value })
                   }
+                  aria-required="true"
                 />
               </div>
               <div>
-                <label className="block text-gray-700 mb-2">
+                <label htmlFor="reason" className="block text-gray-700 mb-2">
                   Reason for Visit
                 </label>
                 <textarea
-                  className="w-full px-4 py-2 border rounded-lg"
+                  id="reason"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   rows={3}
                   value={formData.reason}
                   onChange={(e) =>
                     setFormData({ ...formData, reason: e.target.value })
                   }
+                  aria-required="true"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              aria-label="Book Appointment"
             >
               Book Appointment
             </button>

@@ -10,12 +10,21 @@ interface DoctorCardProps {
 const DoctorCard = ({ doctor }: DoctorCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setIsModalOpen(true);
+    }
+  };
+
   return (
     <>
       <div
         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
         role="article"
         aria-labelledby={`doctor-name-${doctor.id}`}
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
       >
         <div className="relative">
           <img

@@ -4,14 +4,20 @@ interface AppointmentsCardProps {
 }
 
 const AppointmentsCard = ({ appointments, doctors }: AppointmentsCardProps) => {
+  if (!appointments.length) {
+    return (
+      <div className="p-6 text-center text-gray-500">No appointments found</div>
+    );
+  }
+
   return (
     <div>
-      <div className="divide-y divide-gray-200">
+      <div className="">
         {appointments.map((appointment) => {
           const doctor = doctors.find((d) => d.id === appointment.doctorId);
           return (
-            <div key={appointment.id} className="p-6 hover:bg-gray-50">
-              <div className="flex items-center justify-between">
+            <div key={appointment.id} className="p-1 hover:bg-gray-50">
+              <div className="bg-white p-6 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <img
                     src={doctor?.image}

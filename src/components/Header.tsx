@@ -1,69 +1,52 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-white  sticky top-0 z-50">
-      <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-blue-700">
-          Doctory
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-          <Link to="/home">Find a Doctor</Link>
-          <Link to="/about">About</Link>
-          <Link to="/appointments">My Appointments</Link>
-          {/*  <Link
-            to="/book"
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+    <header className="bg-white shadow-md">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex justify-between items-center">
+          <Link
+            to="/"
+            className="text-2xl font-bold text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
           >
-            Book Now
-          </Link> */}
-        </nav>
+            Doctory
+          </Link>
 
-        {/* Mobile Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="block md:hidden text-gray-700"
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-            />
-          </svg>
-        </button>
+          <nav>
+            <ul className="flex space-x-6">
+              <li>
+                <Link
+                  to="/"
+                  className="text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/appointments"
+                  className="text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1"
+                >
+                  Appointments
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about"
+                  className="text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded px-2 py-1"
+                >
+                  About
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-
-      {/* Mobile Nav */}
-      {isOpen && (
-        <nav
-          className="flex flex-col 
-         items-start md:hidden px-4 pb-4 space-y-2 text-sm font-medium text-gray-700"
-        >
-          <Link to="/home" onClick={() => setIsOpen(false)}>
-            Home
-          </Link>
-          <Link to="/about" onClick={() => setIsOpen(false)}>
-            About
-          </Link>
-          <Link to="/appointments" onClick={() => setIsOpen(false)}>
-            My Appointments
-          </Link>
-        </nav>
-      )}
-      <hr className="border-gray-100" />
     </header>
   );
-}
+};
+
+export default Header;
