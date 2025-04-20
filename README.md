@@ -30,7 +30,7 @@ A modern, accessible medical appointment booking platform built with React, Type
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/doctory-website.git
+   git clone https://github.com/asmaaaman/doctory-website.git
    cd doctory-website
    ```
 
