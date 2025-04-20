@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useStore } from "../store/useStore";
 import { Doctor, Appointment } from "../data/types";
+import { toast } from "react-toastify";
 
 interface AppointmentModalProps {
   doctor: Doctor;
@@ -107,6 +108,10 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
       };
     }
   }, [isOpen, onClose]);
+  const resetForm = () => {
+    setSelectedDate("");
+    setSelectedTime("");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,7 +130,8 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
     };
 
     addAppointment(newAppointment);
-
+    toast.success("Appointment booked successfully!");
+    resetForm();
     onClose();
   };
 
