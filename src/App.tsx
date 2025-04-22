@@ -8,6 +8,7 @@ import MasterLayout from "./pages/MasterLayout";
 import NotFound from "./pages/NotFound";
 import { AppointmentsList } from "./components/AppointmentsList";
 import About from "./pages/About";
+import Privacy from "./pages/Privacy";
 
 function App() {
   const routes = createBrowserRouter([
@@ -31,6 +32,10 @@ function App() {
         {
           path: "/about",
           element: <About />,
+        },
+        {
+          path: "/privacy",
+          element: <Privacy />,
         },
       ],
     },

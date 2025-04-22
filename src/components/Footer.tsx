@@ -25,10 +25,10 @@ export default function Footer() {
                   <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <Link to="/careers">Careers</Link>
+                  <Link to="/">Careers</Link>
                 </li>
                 <li>
-                  <Link to="/contact">Contact</Link>
+                  <Link to="/">Contact</Link>
                 </li>
               </ul>
             </div>
@@ -37,10 +37,10 @@ export default function Footer() {
               <h3 className="text-gray-900 font-semibold mb-2">Help</h3>
               <ul className="space-y-1">
                 <li>
-                  <Link to="/faq">FAQs</Link>
+                  <Link to="/">FAQs</Link>
                 </li>
                 <li>
-                  <Link to="/support">Support</Link>
+                  <Link to="/">Support</Link>
                 </li>
                 <li>
                   <Link to="/privacy">Privacy Policy</Link>

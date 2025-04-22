@@ -8,27 +8,33 @@ import AppointmentsCard from "../components/AppointmentsCard";
 
 const Home = () => {
   const appointments = useStore((state) => state.appointments);
-
   const getFilteredDoctors = useStore((s) => s.getFilteredDoctors);
-
-  useStore((s) => s.filter);
-  useStore((s) => s.searchQuery);
-
   const filteredDoctors = getFilteredDoctors();
 
-  const [activeTab, setActiveTab] = useState("doctors");
+  const [activeTab, setActiveTab] = useState<"doctors" | "appointments">(
+    "doctors"
+  );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <HeroSection onSearch={() => setActiveTab("doctors")} />
 
-      {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        {/* Tabs */}
-        <div className="flex border-b border-gray-200 mb-8">
+        {/* Tabs Navigation */}
+        <div
+          className="flex flex-col sm:flex-row border-b border-gray-200 mb-8"
+          role="tablist"
+          aria-label="Main content sections"
+        >
+          {/* Doctors Tab */}
           <button
-            className={`flex items-center gap-2 px-6 py-4 font-medium ${
+            id="doctors-tab"
+            role="tab"
+            aria-selected={activeTab === "doctors"}
+            aria-controls="doctors-panel"
+            tabIndex={activeTab === "doctors" ? 0 : -1}
+            className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 py-3 w-full sm:w-auto font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               activeTab === "doctors"
                 ? "text-blue-600 border-b-2 border-blue-600"
                 : "text-gray-500 hover:text-gray-700"
@@ -38,8 +44,15 @@ const Home = () => {
             <FaUserMd />
             <span>Doctors</span>
           </button>
+
+          {/* Appointments Tab */}
           <button
-            className={`flex items-center gap-2 px-6 py-4 font-medium ${
+            id="appointments-tab"
+            role="tab"
+            aria-selected={activeTab === "appointments"}
+            aria-controls="appointments-panel"
+            tabIndex={activeTab === "appointments" ? 0 : -1}
+            className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 py-3 w-full sm:w-auto font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               activeTab === "appointments"
                 ? "text-blue-600 border-b-2 border-blue-600"
                 : "text-gray-500 hover:text-gray-700"
@@ -51,12 +64,16 @@ const Home = () => {
           </button>
         </div>
 
-        {/* Filters */}
-        {activeTab === "doctors" && <Filter />}
+        {/* Doctors Panel */}
+        <div
+          id="doctors-panel"
+          role="tabpanel"
+          aria-labelledby="doctors-tab"
+          hidden={activeTab !== "doctors"}
+        >
+          {activeTab === "doctors" && <Filter />}
 
-        {/* Main View */}
-        {activeTab === "doctors" ? (
-          filteredDoctors.length > 0 ? (
+          {filteredDoctors.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredDoctors.map((doctor) => (
                 <DoctorCard key={doctor.id} doctor={doctor} />
@@ -66,15 +83,25 @@ const Home = () => {
             <div className="text-center text-gray-500 py-8">
               <p className="text-lg">No doctors match your criteria.</p>
             </div>
-          )
-        ) : (
-          <AppointmentsCard
-            appointments={appointments}
-            doctors={filteredDoctors}
-          />
-        )}
+          )}
+        </div>
+
+        {/* Appointments Panel */}
+        <div
+          id="appointments-panel"
+          role="tabpanel"
+          aria-labelledby="appointments-tab"
+          hidden={activeTab !== "appointments"}
+        >
+          {activeTab === "appointments" && (
+            <AppointmentsCard
+              appointments={appointments}
+              doctors={filteredDoctors}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 

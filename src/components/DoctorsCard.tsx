@@ -69,14 +69,15 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
             </div>
           </div>
 
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between">
             <span className="text-gray-600">
               <span className="font-semibold">${doctor.consultationFee}</span> /
               consultation
             </span>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="bg-blue-600 text-white px-4 py-2 mt-4 sm:mt-0 rounded-lg hover:bg-blue-700 transition-colors 
+              duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 "
               aria-label={`Book appointment with ${doctor.name}`}
             >
               Book Appointment
