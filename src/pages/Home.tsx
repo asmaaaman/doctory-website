@@ -9,16 +9,26 @@ import AppointmentsCard from "../components/AppointmentsCard";
 const Home = () => {
   const appointments = useStore((state) => state.appointments);
   const getFilteredDoctors = useStore((s) => s.getFilteredDoctors);
+
+  useStore((s) => s.searchQuery);
+  useStore((s) => s.filter);
+
   const filteredDoctors = getFilteredDoctors();
 
   const [activeTab, setActiveTab] = useState<"doctors" | "appointments">(
     "doctors"
   );
 
+  // Update filtered doctors whenever filters or search change
+
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <HeroSection onSearch={() => setActiveTab("doctors")} />
+      <HeroSection
+        onSearch={() => {
+          setActiveTab("doctors");
+        }}
+      />
 
       <div className="container mx-auto px-4 py-8">
         {/* Tabs Navigation */}
@@ -33,15 +43,14 @@ const Home = () => {
             role="tab"
             aria-selected={activeTab === "doctors"}
             aria-controls="doctors-panel"
-            tabIndex={activeTab === "doctors" ? 0 : -1}
-            className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 py-3 w-full sm:w-auto font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            className={`flex items-center gap-2 px-4 py-2 ${
               activeTab === "doctors"
                 ? "text-blue-600 border-b-2 border-blue-600"
                 : "text-gray-500 hover:text-gray-700"
             }`}
             onClick={() => setActiveTab("doctors")}
           >
-            <FaUserMd />
+            <FaUserMd aria-hidden="true" />
             <span>Doctors</span>
           </button>
 
@@ -51,16 +60,15 @@ const Home = () => {
             role="tab"
             aria-selected={activeTab === "appointments"}
             aria-controls="appointments-panel"
-            tabIndex={activeTab === "appointments" ? 0 : -1}
-            className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 py-3 w-full sm:w-auto font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+            className={`flex items-center gap-2 px-4 py-2 ${
               activeTab === "appointments"
                 ? "text-blue-600 border-b-2 border-blue-600"
                 : "text-gray-500 hover:text-gray-700"
             }`}
             onClick={() => setActiveTab("appointments")}
           >
-            <FaCalendarAlt />
-            <span>My Appointments</span>
+            <FaCalendarAlt aria-hidden="true" />
+            <span>Appointments</span>
           </button>
         </div>
 
